@@ -81,6 +81,8 @@ class Crawler {
   private extractUrls(html: string, baseUrl: string): string[] {
     const $ = cheerio.load(html);
     const relativeUrls = $('a').map((_, link) => $(link).attr('href')).get() as string[];
+    console.log('Relative urls')
+    console.log(relativeUrls.map(relativeUrl => new URL(relativeUrl, baseUrl).href));
     return relativeUrls.map(relativeUrl => new URL(relativeUrl, baseUrl).href);
   }
 }
